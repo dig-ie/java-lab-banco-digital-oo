@@ -173,4 +173,4 @@ java -cp bin Main
 
 Este projeto demonstra a aplicação prática dos conceitos fundamentais de Orientação a Objetos em Java, implementando uma hierarquia de clientes com regras de negócio específicas para cada tipo.
 
-**Desenvolvido como parte do bootcamp Java da DIO - Formação 72h** 🚀
+**Desenvolvido como parte do bootcamp Java da DIO - Formação 76h** 🚀
