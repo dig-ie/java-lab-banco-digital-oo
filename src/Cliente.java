@@ -1,4 +1,4 @@
-public class Cliente {
+public abstract class Cliente {
 	private final String cpf;
 	private String nome;
 
@@ -56,9 +56,7 @@ public class Cliente {
 			soma += Character.getNumericValue(cpf.charAt(i)) * (10 - i);
 		}
 		int primeiroDigito = 11 - (soma % 11);
-		if (primeiroDigito >= 10) {
-			primeiroDigito = 0;
-		}
+		primeiroDigito = primeiroDigito >= 10 ? 0 : primeiroDigito;
 		if (Character.getNumericValue(cpf.charAt(9)) != primeiroDigito) {
 			return false;
 		}
@@ -68,9 +66,7 @@ public class Cliente {
 			soma += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
 		}
 		int segundoDigito = 11 - (soma % 11);
-		if (segundoDigito >= 10) {
-			segundoDigito = 0;
-		}
+		segundoDigito = segundoDigito >= 10 ? 0 : segundoDigito;
 		if (Character.getNumericValue(cpf.charAt(10)) != segundoDigito) {
 			return false;
 		}
@@ -78,11 +74,35 @@ public class Cliente {
 		return true;
 	}
 
+	/**
+	 * Calcula o limite de crédito específico para cada tipo de cliente
+	 * @return valor do limite de crédito
+	 */
+	public abstract double calcularLimiteCredito();
+	
+	/**
+	 * Calcula a taxa de juros específica para cada tipo de cliente
+	 * @return taxa de juros em percentual
+	 */
+	public abstract double calcularTaxaJuros();
+	
+	/**
+	 * @return true se tem direito a desconto
+	 */
+	public abstract boolean temDireitoDesconto();
+	
+	/**
+	 * Retorna o tipo de cliente
+	 * @return string identificando o tipo
+	 */
+	public abstract String getTipoCliente();
+
 	@Override
 	public String toString() {
 		return "Cliente{" +
 				"cpf='" + cpf + '\'' +
 				", nome='" + nome + '\'' +
+				", tipo='" + getTipoCliente() + '\'' +
 				'}';
 	}
 }
